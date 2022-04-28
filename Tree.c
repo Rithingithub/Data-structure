@@ -14,19 +14,19 @@ void find(int item,struct node **par,struct node **loc)
 {
 	struct node *ptr,*ptrsave;
 
-	if(root==NULL)  /tree empty/
+	if(root==NULL)  /*tree empty*/
 	{
 		*loc=NULL;
 		*par=NULL;
 		return;
 	}
-	if(item==root->info) /item is at root/
+	if(item==root->info) /*item is at root*/
 	{
 		*loc=root;
 		*par=NULL;
 		return;
 	}
-	/Initialize ptr and ptrsave/
+	/*Initialize ptr and ptrsave*/
 	if(item<root->info)
 		ptr=root->lchild;
 	else
@@ -46,9 +46,9 @@ void find(int item,struct node **par,struct node **loc)
 		else
 			ptr=ptr->rchild;
 	 }/*End of while */
-	 loc=NULL;   /*item not found/
+	 loc=NULL;   /*item not found*/
 	 *par=ptrsave;
-}/End of find()/
+}/*End of find()*/
 
 void insert(int item)
 {       struct node *tmp,*parent,*location;
@@ -71,44 +71,44 @@ void insert(int item)
 			parent->lchild=tmp;
 		else
 			parent->rchild=tmp;
-}/End of insert()/
+}/*End of insert()*/
 
 
 void case_a(struct node *par,struct node *loc )
 {
-	if(par==NULL) /item to be deleted is root node/
+	if(par==NULL) /*item to be deleted is root node*/
 		root=NULL;
 	else
 		if(loc==par->lchild)
 			par->lchild=NULL;
 		else
 			par->rchild=NULL;
-}/End of case_a()/
+}/*End of case_a()*/
 
 void case_b(struct node *par,struct node *loc)
 {
 	struct node *child;
 
-	/Initialize child/
+	/*Initialize child*/
 	if(loc->lchild!=NULL) /*item to be deleted has lchild */
 		child=loc->lchild;
 	else                /*item to be deleted has rchild */
 		child=loc->rchild;
 
-	if(par==NULL )   /Item to be deleted is root node/
+	if(par==NULL )   /*Item to be deleted is root node*/
 		root=child;
 	else
-		if( loc==par->lchild)   /item is lchild of its parent/
+		if( loc==par->lchild)   /*item is lchild of its parent*/
 			par->lchild=child;
-		else                  /item is rchild of its parent/
+		else                  /*item is rchild of its parent*/
 			par->rchild=child;
-}/End of case_b()/
+}//End of case_b()
 
 void case_c(struct node *par,struct node *loc)
 {
 	struct node *ptr,*ptrsave,*suc,*parsuc;
 
-	/Find inorder successor and its parent/
+	/*Find inorder successor and its parent*/
 	ptrsave=loc;
 	ptr=loc->rchild;
 	while(ptr->lchild!=NULL)
@@ -134,7 +134,7 @@ void case_c(struct node *par,struct node *loc)
 
 	suc->lchild=loc->lchild;
 	suc->rchild=loc->rchild;
-}/End of case_c()/
+}/*End of case_c()*/
 int del(int item)
 {
 	struct node *parent,*location;
@@ -160,7 +160,7 @@ int del(int item)
 	if(location->lchild!=NULL && location->rchild!=NULL)
 		case_c(parent,location);
 	free(location);
-}/End of del()/
+}//End of del()
 
 int preorder(struct node *ptr)
 {
@@ -175,7 +175,7 @@ int preorder(struct node *ptr)
 		preorder(ptr->lchild);
 		preorder(ptr->rchild);
 	}
-}/End of preorder()/
+}/*End of preorder()*/
 
 void inorder(struct node *ptr)
 {
@@ -190,7 +190,7 @@ void inorder(struct node *ptr)
 		printf("%d  ",ptr->info);
 		inorder(ptr->rchild);
 	}
-}/End of inorder()/
+}//End of inorder()
 
 void postorder(struct node *ptr)
 {
@@ -205,7 +205,7 @@ void postorder(struct node *ptr)
 		postorder(ptr->rchild);
 		printf("%d  ",ptr->info);
 	}
-}/End of postorder()/
+}//End of postorder()
 
 void display(struct node *ptr,int level)
 {
@@ -218,8 +218,8 @@ void display(struct node *ptr,int level)
 			printf("    ");
 		printf("%d", ptr->info);
 		display(ptr->lchild, level+1);
-	}/End of if/
-}/End of display()/
+	}//End of if
+}//End of display()
 main()
 {
 	int choice,num;
